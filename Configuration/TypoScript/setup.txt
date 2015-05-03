@@ -1,0 +1,28 @@
+
+plugin.tx_anythingslider {
+	view {
+		templateRootPath = {$plugin.tx_anythingslider.view.templateRootPath}
+		partialRootPath = {$plugin.tx_anythingslider.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_anythingslider.view.layoutRootPath}
+	}
+	persistence {
+		storagePid = {$plugin.tx_anythingslider.persistence.storagePid}
+	}
+	features {
+		# uncomment the following line to enable the new Property Mapper.
+		# rewrittenPropertyMapper = 1
+	}
+}
+
+### add css
+page.includeCSS {
+    tx_css = EXT:anythingslider/Resources/Public/CSS/anythingslider.css
+}
+
+### add footer js
+# jquery is needed!
+page.includeJSFooter {
+    tx_swf = EXT:anythingslider/Resources/Public/JS/swfobject.js
+    tx_slider = EXT:anythingslider/Resources/Public/JS/jquery.anythingslider.js
+    tx_svideo = EXT:anythingslider/Resources/Public/JS/jquery.anythingslider.video.js
+}

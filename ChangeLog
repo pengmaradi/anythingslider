@@ -1,0 +1,13 @@
+2015-05-03 Xiaoling Peng <pengmaradi@gmail.com>
+        * version 0.0.3
+        * changed List.html to add class="embed-responsive-item" for video
+        * changed Resources/Private/Language/locallang_db.xlf for backend Source label
+
+2015-05-03 Xiaoling Peng <pengmaradi@gmail.com>
+        * version 0.0.2
+        * fixed youtube width and height in Resources/Public/JS/jquery.anythingslider.video.js
+        * changed same css in Resources/Public/CSS/anythingslider.css to fix the iframe
+
+2015-05-02 Xiaoling Peng <pengmaradi@gmail.com>
+        * version 0.0.1
+        * created anything in slider with extension_builder

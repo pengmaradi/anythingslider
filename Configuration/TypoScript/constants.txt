@@ -1,0 +1,15 @@
+
+plugin.tx_anythingslider {
+	view {
+		# cat=plugin.tx_anythingslider/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:anythingslider/Resources/Private/Templates/
+		# cat=plugin.tx_anythingslider/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:anythingslider/Resources/Private/Partials/
+		# cat=plugin.tx_anythingslider/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:anythingslider/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_anythingslider//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}

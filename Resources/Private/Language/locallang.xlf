@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2015-05-02T18:29:19Z" product-name="anythingslider">
+		<header/>
+		<body>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider">
+				<source>Anythingslider</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.type">
+				<source>Type</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.description">
+				<source>Description</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.source">
+				<source>Source</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.video">
+				<source>Video</source>
+			</trans-unit>
+			<trans-unit id="tx_anythingslider_domain_model_anythingslider.image">
+				<source>Image</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
