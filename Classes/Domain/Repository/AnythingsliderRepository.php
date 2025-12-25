@@ -42,9 +42,9 @@ class AnythingsliderRepository extends Repository
     {
         $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class)
             // do not respect sys_language_uid
-            ->setRespectSysLanguage(false)
+            //->setRespectSysLanguage(false)
             // deleted, hidden, starttime, endtime are ignored
-            ->setIgnoreEnableFields(true)
+            //->setIgnoreEnableFields(true)
             // do not respect storage page
             // plugin.blabla.persistence.storagePid = 10 in TypoScript
             ->setRespectStoragePage(false);
