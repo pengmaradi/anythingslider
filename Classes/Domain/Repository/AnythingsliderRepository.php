@@ -1,6 +1,8 @@
 <?php
-namespace Xp\Anythingslider\Domain\Repository;
 
+declare(strict_types=1);
+
+namespace Xp\Anythingslider\Domain\Repository;
 
 /***************************************************************
  *
@@ -27,10 +29,25 @@ namespace Xp\Anythingslider\Domain\Repository;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use TYPO3\CMS\Extbase\Persistence\Repository;
+
 /**
  * The repository for Anythingsliders
  */
-class AnythingsliderRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	
+class AnythingsliderRepository extends Repository
+{
+    public function initializeObject(): void
+    {
+        $querySettings = GeneralUtility::makeInstance(Typo3QuerySettings::class)
+            // do not respect sys_language_uid
+            ->setRespectSysLanguage(false)
+            // deleted, hidden, starttime, endtime are ignored
+            ->setIgnoreEnableFields(true)
+            // do not respect storage page
+            // plugin.blabla.persistence.storagePid = 10 in TypoScript
+            ->setRespectStoragePage(false);
+        $this->setDefaultQuerySettings($querySettings);
+    }
 }

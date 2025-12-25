@@ -1,6 +1,6 @@
 <?php
-namespace Xp\Anythingslider\Domain\Model;
 
+namespace Xp\Anythingslider\Domain\Model;
 
 /***************************************************************
  *
@@ -27,165 +27,83 @@ namespace Xp\Anythingslider\Domain\Model;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
+
 /**
  * Anythingslider
  */
-class Anythingslider extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
+class Anythingslider extends AbstractEntity
+{
+    protected string $title = '';
 
-	/**
-	 * title
-	 *
-	 * @var string
-	 */
-	protected $title = '';
+    protected int $type = 0;
 
-	/**
-	 * type
-	 *
-	 * @var integer
-	 */
-	protected $type = 0;
+    protected string $description = '';
 
-	/**
-	 * description
-	 *
-	 * @var string
-	 */
-	protected $description = '';
+    protected string $source = '';
 
-	/**
-	 * source
-	 *
-	 * @var string
-	 */
-	protected $source = '';
+    protected ?FileReference $video = null;
 
-	/**
-	 * video
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $video = NULL;
+    protected ?FileReference $image = null;
 
-	/**
-	 * image
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
-	 */
-	protected $image = NULL;
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
 
-	/**
-	 * Returns the title
-	 *
-	 * @return string $title
-	 */
-	public function getTitle() {
-		return $this->title;
-	}
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
 
-	/**
-	 * Sets the title
-	 *
-	 * @param string $title
-	 * @return void
-	 */
-	public function setTitle($title) {
-		$this->title = $title;
-	}
+    public function getType(): int
+    {
+        return $this->type;
+    }
 
-	/**
-	 * Returns the type
-	 *
-	 * @return integer $type
-	 */
-	public function getType() {
-		return $this->type;
-	}
+    public function setType(int $type): void
+    {
+        $this->type = $type;
+    }
 
-	/**
-	 * Sets the type
-	 *
-	 * @param integer $type
-	 * @return void
-	 */
-	public function setType($type) {
-		$this->type = $type;
-	}
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
 
-	/**
-	 * Returns the description
-	 *
-	 * @return string $description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
 
-	/**
-	 * Sets the description
-	 *
-	 * @param string $description
-	 * @return void
-	 */
-	public function setDescription($description) {
-		$this->description = $description;
-	}
+    public function getSource(): string
+    {
+        return $this->source;
+    }
 
-	/**
-	 * Returns the source
-	 *
-	 * @return string $source
-	 */
-	public function getSource() {
-		return $this->source;
-	}
+    public function setSource(string $source): void
+    {
+        $this->source = $source;
+    }
 
-	/**
-	 * Sets the source
-	 *
-	 * @param string $source
-	 * @return void
-	 */
-	public function setSource($source) {
-		$this->source = $source;
-	}
+    public function getVideo(): ?FileReference
+    {
+        return $this->video;
+    }
 
-	/**
-	 * Returns the video
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $video
-	 */
-	public function getVideo() {
-		return $this->video;
-	}
+    public function setVideo(FileReference $video): void
+    {
+        $this->video = $video;
+    }
 
-	/**
-	 * Sets the video
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $video
-	 * @return void
-	 */
-	public function setVideo(\TYPO3\CMS\Extbase\Domain\Model\FileReference $video) {
-		$this->video = $video;
-	}
+    public function getImage(): ?FileReference
+    {
+        return $this->image;
+    }
 
-	/**
-	 * Returns the image
-	 *
-	 * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-	 */
-	public function getImage() {
-		return $this->image;
-	}
-
-	/**
-	 * Sets the image
-	 *
-	 * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
-	 * @return void
-	 */
-	public function setImage(\TYPO3\CMS\Extbase\Domain\Model\FileReference $image) {
-		$this->image = $image;
-	}
-
+    public function setImage(FileReference $image): void
+    {
+        $this->image = $image;
+    }
 }

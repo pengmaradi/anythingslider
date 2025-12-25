@@ -1,6 +1,8 @@
 <?php
-namespace Xp\Anythingslider\Controller;
 
+declare(strict_types=1);
+
+namespace Xp\Anythingslider\Controller;
 
 /***************************************************************
  *
@@ -27,32 +29,29 @@ namespace Xp\Anythingslider\Controller;
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
 
-/**
- * AnythingsliderController
- */
-class AnythingsliderController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController {
+use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use Xp\Anythingslider\Domain\Repository\AnythingsliderRepository;
 
-	/**
-	 * anythingsliderRepository
-	 *
-	 * @var \Xp\Anythingslider\Domain\Repository\AnythingsliderRepository
-	 * @inject
-	 */
-	protected $anythingsliderRepository = NULL;
+final class AnythingsliderController extends ActionController
+{
+    public function __construct(
+        private AnythingsliderRepository $anythingsliderRepository,
+    ) {}
 
-	/**
-	 * action list
-	 *
-	 * @return void
-	 */
-	public function listAction() {
-		$anythingsliders = $this->anythingsliderRepository->findAll();
-		$this->view->assign('anythingsliders', $anythingsliders);
-                $titles = '';
-                foreach($anythingsliders as $key => $value) {
-			$titles .= "'".$value->getTitle()."',";
-		}
-		$this->view->assign('titles', $titles);
-	}
+    public function listAction(): ResponseInterface
+    {
+        $anythingsliders = $this->anythingsliderRepository->findAll();
+        $titles = '';
+        foreach ($anythingsliders as $key => $value) {
+            $titles .= "'" . $value->getTitle() . "',";
+        }
 
+        $this->view->assignMultiple([
+            'anythingsliders' => $anythingsliders,
+            'titles' => $titles,
+        ]);
+
+        return $this->htmlResponse();
+    }
 }
