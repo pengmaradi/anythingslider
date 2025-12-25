@@ -1,12 +1,12 @@
 
-plugin.tx_anythingslider {
+plugin.anythingslider_pi1 {
 	view {
-		templateRootPath = {$plugin.tx_anythingslider.view.templateRootPath}
-		partialRootPath = {$plugin.tx_anythingslider.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_anythingslider.view.layoutRootPath}
+		templateRootPath = {$plugin.anythingslider_pi1.view.templateRootPath}
+		partialRootPath = {$plugin.anythingslider_pi1.view.partialRootPath}
+		layoutRootPath = {$plugin.anythingslider_pi1.view.layoutRootPath}
 	}
 	persistence {
-		storagePid = {$plugin.tx_anythingslider.persistence.storagePid}
+		storagePid = {$plugin.anythingslider_pi1.persistence.storagePid}
 	}
 	features {
 		# uncomment the following line to enable the new Property Mapper.

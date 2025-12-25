@@ -1,0 +1,26 @@
+{
+    "name": "xp/anythingslider",
+    "type": "typo3-cms-extension",
+    "description": "the custom anythingslider",
+	"version": "2.0.0",
+    "authors": [
+        {
+            "name": "Xiaoling Peng",
+            "role": "Developer"
+        }
+    ],
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "typo3/cms-core": "^14"
+    },
+    "autoload": {
+        "psr-4": {
+            "Xp\\Anythingslider\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "anythingslider"
+        }
+    }
+}

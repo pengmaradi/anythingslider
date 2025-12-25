@@ -1,98 +1,101 @@
-
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:layout name="Default" />
 
-
 <f:section name="main">
+	<f:debug>{anythingsliders}</f:debug>
+	<ul id="slider">
 
-        <f:flashMessages renderMode="div" />
+		<f:for each="{anythingsliders}" as="slider">
+			<li class="row">
 
-        <ul id="slider">
+				<f:if condition="{slider.type} == 1">
+					<div class="left col-lg-3 col-md-3 col-sm-3 col-xs-3">
+						<h3>{slider.title}</h3>
+						<f:format.raw>{slider.description}</f:format.raw>
+					</div>
+					<div class="right col-lg-9 col-md-9 col-sm-9 col-xs-9">
+						<f:if condition="{slider.source}">
+							<f:then>
+								<f:format.raw>
+									<div class="embed-responsive embed-responsive-16by9">
+										{slider.source}
+									</div>
+								</f:format.raw>
+							</f:then>
+							<f:else>
+								<video controls poster="{slider.image.originalResource.publicUrl}"
+									class="embed-responsive-item">
+									<source src="{slider.video.originalResource.publicUrl}" type="video/mp4">
+									Your browser does not support the video tag.
+									<a
+										href="{slider.video.originalResource.publicUrl}">{slider.video.originalResource.name}</a>
+								</video>
+							</f:else>
+						</f:if>
+					</div>
+				</f:if>
 
-                <f:for each="{anythingsliders}" as="anythingslider">
-                        <li class="row">
+				<f:if condition="{slider.type} == 2">
+					<div class="onlyText col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div class="only text-image">
+							<div class="text">
+								<h3>{slider.title}</h3>
+								<div class="desc">
+									<f:format.raw>{slider.description}
+									</f:format.raw>
+								</div>
+							</div>
+							<f:image class="img-responsive slider-img" image="{slider.image}" />
+						</div>
+					</div>
+				</f:if>
 
-                        <f:if condition="{anythingslider.type} == 1">
-                                <div class="left col-lg-3 col-md-3 col-sm-3 col-xs-3">
-                                        <h3>{anythingslider.title}</h3>
-                                        <f:format.raw>{anythingslider.description}</f:format.raw>
-                                </div>
-                                <div class="right col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                        <f:if condition="{anythingslider.source}">
-                                                <f:then>
-                                                        <f:format.raw>
-                                                                <div class="embed-responsive embed-responsive-16by9">
-                                                                        {anythingslider.source}
-                                                                </div>
-                                                        </f:format.raw>
-                                                </f:then>
-                                                <f:else>
-                                                        <video controls poster="{anythingslider.image.originalResource.publicUrl}" class="embed-responsive-item">
-                                                                <source src="{anythingslider.video.originalResource.publicUrl}" type="video/mp4">
-                                                                Your browser does not support the video tag.
-                                                                <a href="{anythingslider.video.originalResource.publicUrl}">{anythingslider.video.originalResource.name}</a>
-                                                        </video>
-                                                </f:else>
-                                        </f:if>
-                                </div>
-                        </f:if>
+				<f:if condition="{slider.type} == 3">
+					<div class="onlyVideo embed-responsive">
+						<f:if condition="{slider.source}">
+							<f:then>
+								<f:format.raw>
+									{slider.source}
+								</f:format.raw>
+							</f:then>
+							<f:else>
+								<video controls poster="{slider.image.originalResource.publicUrl}"
+									class="embed-responsive-item">
+									<source src="{slider.video.originalResource.publicUrl}" type="video/mp4">
+									Your browser does not support the video tag.
+									<a
+										href="{slider.video.originalResource.publicUrl}">{slider.video.originalResource.name}</a>
+								</video>
+							</f:else>
+						</f:if>
+					</div>
+				</f:if>
+			</li>
+		</f:for>
+	</ul>
 
-                        <f:if condition="{anythingslider.type} == 2">
-                                <div class="onlyText col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="only text-image">
-                                                <div class="text">
-                                                        <h3>{anythingslider.title}</h3>
-                                                        <div class="desc">
-                                                                <f:format.raw>{anythingslider.description}</f:format.raw>
-                                                        </div>
-                                                </div>
-                                                <f:image class="img-responsive slider-img" image="{anythingslider.image}" />
-                                        </div>                                        
-                                </div>                
-                        </f:if>
-                        
-                        <f:if condition="{anythingslider.type} == 3">
-                                <div class="onlyVideo embed-responsive">                                                                                  
-                                        <f:if condition="{anythingslider.source}">
-                                                <f:then>
-                                                        <f:format.raw>                                                                
-                                                                {anythingslider.source}                                                                
-                                                        </f:format.raw>
-                                                </f:then>
-                                                <f:else>
-                                                        <video controls poster="{anythingslider.image.originalResource.publicUrl}" class="embed-responsive-item">
-                                                                <source src="{anythingslider.video.originalResource.publicUrl}" type="video/mp4">
-                                                                Your browser does not support the video tag.
-                                                                <a href="{anythingslider.video.originalResource.publicUrl}">{anythingslider.video.originalResource.name}</a>
-                                                        </video>
-                                                </f:else>
-                                        </f:if>
-                                </div>
-                        </f:if>
-                        </li>
-                </f:for>
-        </ul>
-
-        <script><![CDATA[
-                $(function () {
-                        $('#slider').anythingSlider({
-                                resizeContents: true,
-                                addWmodeToObject: 'opaque',
-                                navigationFormatter: function (index, panel) {
-                                        return ]]> [{titles}][index - 1];
-                
-                                }
-                        }).anythingSliderVideo({
-                                // video id prefix; suffix from $.fn.anythingSliderVideo.videoIndex
-                                videoId: 'asvideo',
-                                // auto load YouTube api script
-                                youtubeAutoLoad: true,
-                                // see: https://developers.google.com/youtube/player_parameters#Parameters
-                                youtubeParams: {
-                                        modestbranding: 1,
-                                        iv_load_policy: 3,
-                                        fs: 1
-                                }
-                        });
-                });
-        </script>
+	<script>
+		$(function () {
+			$('#slider').anythingSlider({
+				resizeContents: true,
+				addWmodeToObject: 'opaque',
+				navigationFormatter: function (index, panel) {
+					return [{ titles }][index - 1];
+				}
+			}).anythingSliderVideo({
+				// video id prefix; suffix from $.fn.anythingSliderVideo.videoIndex
+				videoId: 'asvideo',
+				// auto load YouTube api script
+				youtubeAutoLoad: true,
+				// see: https://developers.google.com/youtube/player_parameters#Parameters
+				youtubeParams: {
+					modestbranding: 1,
+					iv_load_policy: 3,
+					fs: 1
+				}
+			});
+		});
+	</script>
 </f:section>
+
+</html>
