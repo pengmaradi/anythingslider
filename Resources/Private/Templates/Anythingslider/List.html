@@ -20,14 +20,14 @@
 								}" />
 							</f:case>
 							<f:case value="2">
-								<li class="splide__slide">
-									<div class="relative flex flex-col content-center items-center">
+								<li class="splide__slide relative">
+									<div class="flex flex-col content-center items-center">
 										<h2>{slider.title}</h2>
 										<div class="desc">
 											{slider.description->f:format.raw()}
 										</div>
 										<f:if condition="{slider.image}">
-											<f:image class="absolute -z-1 img-responsive w-full h-full" image="{slider.image}" />
+											<f:image class="absolute -z-1 inset-0 img-responsive w-full h-full" image="{slider.image}" />
 										</f:if>
 									</div>
 								</li>
@@ -40,10 +40,12 @@
 								}" />
 							</f:case>
 							<f:defaultCase>
-								<f:if condition="{slider.source}">
-									<iframe class="w-full h-full" title="map"
-										src="{slider.source}"></iframe>
-								</f:if>
+								<li class="splide__slide">
+									<f:if condition="{slider.source}">
+										<iframe class="w-full h-full" title="map"
+											src="{slider.source}"></iframe>
+									</f:if>
+								</li>
 							</f:defaultCase>
 						</f:switch>
 					
