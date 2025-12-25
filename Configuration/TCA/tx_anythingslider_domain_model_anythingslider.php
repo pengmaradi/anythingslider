@@ -123,8 +123,9 @@ return [
                 'items' => [
                     ['label' => 'please select', 'value' => '--div--'],
                     ['label' => 'text with video', 'value' => 1],
-                    ['label' => 'only text', 'value' => 2],
+                    ['label' => 'no video', 'value' => 2],
                     ['label' => 'only video', 'value' => 3],
+                    ['label' => 'map', 'value' => 4],
                 ],
                 'size' => 1,
                 'eval' => '',

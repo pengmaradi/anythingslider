@@ -2,100 +2,130 @@
 <f:layout name="Default" />
 
 <f:section name="main">
-	<f:debug>{anythingsliders}</f:debug>
-	<ul id="slider">
 
-		<f:for each="{anythingsliders}" as="slider">
-			<li class="row">
-
-				<f:if condition="{slider.type} == 1">
-					<div class="left col-lg-3 col-md-3 col-sm-3 col-xs-3">
-						<h3>{slider.title}</h3>
-						<f:format.raw>{slider.description}</f:format.raw>
-					</div>
-					<div class="right col-lg-9 col-md-9 col-sm-9 col-xs-9">
-						<f:if condition="{slider.source}">
-							<f:then>
-								<f:format.raw>
-									<div class="embed-responsive embed-responsive-16by9">
-										{slider.source}
+	<section class="custom-splide mb-10" x-data="customSplide">
+		<div class="splide" x-ref="splide">
+			<div class="splide__track">
+				<ul class="splide__list">
+					<f:for each="{anythingsliders}" as="slider">
+						<f:switch expression="{slider.type}">
+							<f:case value="1">
+								<f:render section="video" arguments="{
+									type:slider.video.originalResource.extension,
+									video:slider.video.originalResource.publicUrl,
+									image:slider.image,
+									title:slider.title,
+									description:slider.description
+								}" />
+							</f:case>
+							<f:case value="2">
+								<li class="splide__slide">
+									<div class="relative flex flex-col content-center items-center">
+										<h2>{slider.title}</h2>
+										<div class="desc">
+											{slider.description->f:format.raw()}
+										</div>
+										<f:if condition="{slider.image}">
+											<f:image class="absolute -z-1 img-responsive w-full h-full" image="{slider.image}" />
+										</f:if>
 									</div>
-								</f:format.raw>
-							</f:then>
-							<f:else>
-								<video controls poster="{slider.image.originalResource.publicUrl}"
-									class="embed-responsive-item">
-									<source src="{slider.video.originalResource.publicUrl}" type="video/mp4">
-									Your browser does not support the video tag.
-									<a
-										href="{slider.video.originalResource.publicUrl}">{slider.video.originalResource.name}</a>
-								</video>
-							</f:else>
-						</f:if>
-					</div>
-				</f:if>
+								</li>
+							</f:case>
+							<f:case value="3">
+								<f:render section="video" arguments="{
+									type:slider.video.originalResource.extension,
+									video:slider.video.originalResource.publicUrl,
+									image:slider.image
+								}" />
+							</f:case>
+							<f:defaultCase>
+								<f:if condition="{slider.source}">
+									<iframe class="w-full h-full" title="map"
+										src="{slider.source}"></iframe>
+								</f:if>
+							</f:defaultCase>
+						</f:switch>
+					
+					</f:for>
+				</ul>
+			</div>
+		</div>
+	</section>
 
-				<f:if condition="{slider.type} == 2">
-					<div class="onlyText col-lg-12 col-md-12 col-sm-12 col-xs-12">
-						<div class="only text-image">
-							<div class="text">
-								<h3>{slider.title}</h3>
-								<div class="desc">
-									<f:format.raw>{slider.description}
-									</f:format.raw>
-								</div>
-							</div>
-							<f:image class="img-responsive slider-img" image="{slider.image}" />
-						</div>
-					</div>
-				</f:if>
-
-				<f:if condition="{slider.type} == 3">
-					<div class="onlyVideo embed-responsive">
-						<f:if condition="{slider.source}">
-							<f:then>
-								<f:format.raw>
-									{slider.source}
-								</f:format.raw>
-							</f:then>
-							<f:else>
-								<video controls poster="{slider.image.originalResource.publicUrl}"
-									class="embed-responsive-item">
-									<source src="{slider.video.originalResource.publicUrl}" type="video/mp4">
-									Your browser does not support the video tag.
-									<a
-										href="{slider.video.originalResource.publicUrl}">{slider.video.originalResource.name}</a>
-								</video>
-							</f:else>
-						</f:if>
-					</div>
-				</f:if>
-			</li>
-		</f:for>
-	</ul>
-
-	<script>
-		$(function () {
-			$('#slider').anythingSlider({
-				resizeContents: true,
-				addWmodeToObject: 'opaque',
-				navigationFormatter: function (index, panel) {
-					return [{ titles }][index - 1];
-				}
-			}).anythingSliderVideo({
-				// video id prefix; suffix from $.fn.anythingSliderVideo.videoIndex
-				videoId: 'asvideo',
-				// auto load YouTube api script
-				youtubeAutoLoad: true,
-				// see: https://developers.google.com/youtube/player_parameters#Parameters
-				youtubeParams: {
-					modestbranding: 1,
-					iv_load_policy: 3,
-					fs: 1
-				}
-			});
-		});
-	</script>
 </f:section>
 
 </html>
+
+
+<f:section name="videoText">
+	<f:switch expression="{type}">
+		<f:case value="vimeo">
+			<li class="splide__slide" data-splide-vimeo="{video}">
+				<div class="relative flex flex-col content-center items-center">
+					<h2>{title}</h2>
+					<div class="desc">
+						{description->f:format.raw()}
+					</div>
+					<f:if condition="{image}">
+						<f:image class="absolute -z-1 img-responsive w-full h-full" image="{image}" />
+					</f:if>
+				</div>
+			</li>
+		</f:case>
+		<f:case value="youtube">
+			<li class="splide__slide" data-splide-youtube="{video}">
+				<div class="relative flex flex-col content-center items-center">
+					<h2>{title}</h2>
+					<div class="desc">
+						{description->f:format.raw()}
+					</div>
+					<f:if condition="{image}">
+						<f:image class="absolute -z-1 img-responsive w-full h-full" image="{image}" />
+					</f:if>
+				</div>
+			</li>
+		</f:case>
+		<f:defaultCase>
+			<li class="splide__slide"
+				data-splide-html-video="{video}">
+				<div class="relative flex flex-col content-center items-center">
+					<h2>{title}</h2>
+					<div class="desc">
+						{description->f:format.raw()}
+					</div>
+					<f:if condition="{image}">
+						<f:image class="absolute -z-1 img-responsive w-full h-full" image="{image}" />
+					</f:if>
+				</div>
+			</li>
+		</f:defaultCase>
+	</f:switch>
+</f:section>
+
+
+<f:section name="video">
+	<f:switch expression="{type}">
+		<f:case value="vimeo">
+			<li class="splide__slide" data-splide-vimeo="{video}">
+				<f:if condition="{image}">
+					<f:image class="img-responsive w-full h-full" image="{image}" />
+				</f:if>
+			</li>
+		</f:case>
+		<f:case value="youtube">
+			<li class="splide__slide" data-splide-youtube="{video}">
+				<f:if condition="{image}">
+					<f:image class="img-responsive w-full h-full" image="{image}" />
+				</f:if>
+			</li>
+		</f:case>
+		<f:defaultCase>
+			<li class="splide__slide"
+				data-splide-html-video="{video}">
+				<f:if condition="{image}">
+					<f:image class="img-responsive w-full h-full" image="{image}" />
+				</f:if>
+			</li>
+		</f:defaultCase>
+	</f:switch>
+</f:section>

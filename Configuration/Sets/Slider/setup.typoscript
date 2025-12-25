@@ -16,13 +16,10 @@ plugin.anythingslider_pi1 {
 
 ### add css
 page.includeCSS {
-    tx_css = EXT:anythingslider/Resources/Public/CSS/anythingslider.css
+    // tx_splider = EXT:anythingslider/Resources/Public/CSS/splider.css
 }
 
 ### add footer js
-# jquery is needed!
 page.includeJSFooter {
-    tx_swf = EXT:anythingslider/Resources/Public/JS/swfobject.js
-    tx_slider = EXT:anythingslider/Resources/Public/JS/jquery.anythingslider.js
-    tx_svideo = EXT:anythingslider/Resources/Public/JS/jquery.anythingslider.video.js
+   // tx_splider = EXT:anythingslider/Resources/Public/JS/splider.js
 }
