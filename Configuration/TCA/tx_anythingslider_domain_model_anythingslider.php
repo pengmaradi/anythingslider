@@ -128,6 +128,7 @@ return [
                     ['label' => 'map', 'value' => 4],
                 ],
                 'size' => 1,
+
                 'eval' => '',
             ],
         ],
