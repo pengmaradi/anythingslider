@@ -4,11 +4,11 @@
 
 ### Features
 
-✅  Responsive & Touch-Friendly: Smooth sliding experience on all devices.
-✅  Lightweight: Uses Alpine.js (~7KB) and Splide.js for performant animations.
-✅  Tailwind CSS: Easily customizable styling without heavy CSS overrides.
-✅  TYPO3 v14+ Compatible: Built for the latest TYPO3 versions.
-✅  Flexible Content: Supports images, text, or videos (youtube, vimeo, or mp4) via TYPO3’s backend.
+- ✅  Responsive & Touch-Friendly: Smooth sliding experience on all devices.
+- ✅  Lightweight: Uses Alpine.js (~7KB) and Splide.js for performant animations.
+- ✅  Tailwind CSS: Easily customizable styling without heavy CSS overrides.
+- ✅  TYPO3 v14+ Compatible: Built for the latest TYPO3 versions.
+- ✅  Flexible Content: Supports images, text, or videos (youtube, vimeo, or mp4) via TYPO3’s backend.
 
 ### Installation
 

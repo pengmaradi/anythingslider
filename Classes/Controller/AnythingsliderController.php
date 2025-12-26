@@ -36,20 +36,15 @@ use Xp\Anythingslider\Domain\Repository\AnythingsliderRepository;
 final class AnythingsliderController extends ActionController
 {
     public function __construct(
-        private AnythingsliderRepository $anythingsliderRepository,
+        private readonly AnythingsliderRepository $anythingsliderRepository,
     ) {}
 
     public function listAction(): ResponseInterface
     {
         $anythingsliders = $this->anythingsliderRepository->findAll();
-        $titles = '';
-        foreach ($anythingsliders as $key => $value) {
-            $titles .= "'" . $value->getTitle() . "',";
-        }
 
         $this->view->assignMultiple([
             'anythingsliders' => $anythingsliders,
-            'titles' => $titles,
         ]);
 
         return $this->htmlResponse();
