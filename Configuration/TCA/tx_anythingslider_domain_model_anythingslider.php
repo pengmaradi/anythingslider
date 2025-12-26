@@ -27,9 +27,9 @@ return [
     'types' => [
         '1' => [
             'showitem' => '
-            title, type, description, source, video, image,
-            --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:language, sys_language_uid, l10n_parent, l10n_diffsource,
-        --div--;LLL:EXT:core/Resources/Private/Language/Form/locallang_tabs.xlf:access, hidden, starttime, endtime
+                title, type, description, source, video, image,
+                --div--;core.form.tabs:language, sys_language_uid, l10n_parent, l10n_diffsource,
+                --div--;core.form.tabs:access, hidden, starttime, endtime
             ', ],
     ],
     'columns' => [
@@ -43,7 +43,6 @@ return [
         ],
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
             'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
             'config' => [
                 'type' => 'select',
@@ -74,7 +73,6 @@ return [
                 'items' => [
                     [
                         'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.yes',
-                        'value' => 1,
                     ],
                 ],
             ],
@@ -117,6 +115,7 @@ return [
         'type' => [
             'exclude' => true,
             'label' => 'LLL:EXT:anythingslider/Resources/Private/Language/locallang_db.xlf:tx_anythingslider_domain_model_anythingslider.type',
+            'onChange' => 'reload',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -135,6 +134,12 @@ return [
         'description' => [
             'exclude' => true,
             'label' => 'LLL:EXT:anythingslider/Resources/Private/Language/locallang_db.xlf:tx_anythingslider_domain_model_anythingslider.description',
+            'displayCond' => [
+                'OR' => [
+                    'FIELD:type:=:1',
+                    'FIELD:type:=:2',
+                ],
+            ],
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
@@ -152,16 +157,23 @@ return [
         'source' => [
             'exclude' => true,
             'label' => 'LLL:EXT:anythingslider/Resources/Private/Language/locallang_db.xlf:tx_anythingslider_domain_model_anythingslider.source',
+            'displayCond' => 'FIELD:type:=:4',
             'config' => [
                 'type' => 'text',
                 'cols' => 40,
-                'rows' => 15,
+                'rows' => 3,
                 'eval' => 'trim',
             ],
         ],
         'video' => [
             'exclude' => true,
             'label' => 'LLL:EXT:anythingslider/Resources/Private/Language/locallang_db.xlf:tx_anythingslider_domain_model_anythingslider.video',
+            'displayCond' => [
+                'OR' => [
+                    'FIELD:type:=:1',
+                    'FIELD:type:=:3',
+                ],
+            ],
             'config' => [
                 'type' => 'file',
                 'maxitems' => 1,
@@ -171,6 +183,7 @@ return [
         'image' => [
             'exclude' => true,
             'label' => 'LLL:EXT:anythingslider/Resources/Private/Language/locallang_db.xlf:tx_anythingslider_domain_model_anythingslider.image',
+            'displayCond' => 'FIELD:type:!=:4',
             'config' => [
                 'type' => 'file',
                 'maxitems' => 1,
